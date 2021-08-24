@@ -1,0 +1,10 @@
+**/node_modules/*
+**/out/*
+**/.next/*
+/yarn.lock
+/.eslintrc.json
+/*config.js
+/.vscode
+/*.json
+/next-env.d.ts
+/README.md 

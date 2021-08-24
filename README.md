@@ -1,34 +1,133 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 初期セットアップ
 
-## Getting Started
+## Next.js
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
+```
+yarn create next-app . --typescript
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## src フォルダ作成
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+mkdir src
+mv styles ./src
+mv pages ./src
+cd src
+mkdir components
+mkdir layouts
+cd ..
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## tsconfig.json修正
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+"compilerOptions": {
+    "baseUrl": "."     ## 行追加
+}
+"include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],　　#＃ srcフォルダ配下に変更
+```
 
-## Learn More
+## next.config.js修正
+```
+module.exports = {
+  pageExtensions: ['page.ts', 'page.tsx'],      ## 行追加
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 必要 module のインストール
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+yarn add -D eslint-plugin-simple-import-sort
+yarn add -D prettier
+yarn add -D eslint-config-prettier
+yarn add -D @typescript-eslint/eslint-plugin
+yarn add -D @typescript-eslint/parser
+```
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ESlint 設定
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+設定ファイルの名前変更　.eslintrc.js
+ファイルの先頭に`module.exports =`を追加
+
+ESlint チェック対象外の設定
+.eslintignore 新規作成
+
+```
+**/node_modules/*
+**/out/*
+**/.next/*
+/.eslintrc.js
+/next.config.js
+/postcss.config.js
+/tailwind.config.js
+```
+.prettierignoreの新規作成
+```
+**/node_modules/*
+**/out/*
+**/.next/*
+/yarn.lock
+/.eslintrc.json
+/*config.js
+/.vscode
+/*.json
+/next-env.d.ts
+/README.md 
+```
+
+
+## tailwind css のインストール
+
+```
+yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest
+yarn add -D eslint-plugin-tailwindcss
+yarn add -D @jarrodldavis/eslint-plugin-tailwindcss@latest
+yarn add -D prettier-plugin-tailwind
+yarn add @headlessui/react
+yarn add @heroicons/react
+```
+
+
+## tailwind.config.js, postcss.config.js の生成
+
+```
+npx tailwindcss init -p
+```
+
+
+## vs code のワークスペース設定
+
+validate チェック off
+
+
+## index.tsx の編集
+
+index.tsx を下記のとおりに置き換える。
+className でスタイルを当てていく
+元々あった Home.module.css は削除しておく
+
+```
+import type { NextPage } from "next";
+
+const Home: NextPage = () => {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen font-mono">
+      Hello Nextjs
+    </div>
+  );
+};
+export default Home;
+
+```
+
+
+# firebase
+```
+yarn add firebase
+yarn add firebase-admin
+yarn add next-firebase-auth
+yarn add axios
+yarn add swr
+```
