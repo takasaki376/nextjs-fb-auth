@@ -113,7 +113,7 @@
   },
   "overrides": [
     {
-      "files": ["src/pages/**/*.tsx", "src/pages/**/**/*.tsx","src/pages/**/**/*.ts"],
+      "files": ["src/pages/**/*.page.tsx", "src/pages/**/**/*.page.tsx","src/pages/**/*.page.ts"],
       "rules": { "import/no-default-export": "off" },
       "parserOptions": {
         "project": ["./tsconfig.json"] // Specify it only for TypeScript files

@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { AuthAction, withAuthUser } from "next-firebase-auth";
 import { useState } from "react";
 import { Layout } from "src/layouts/Layout";
 import { HomeInput } from "src/pages/Home/HomeInput";
@@ -48,4 +49,8 @@ const Home: NextPage = () => {
     </Layout>
   );
 };
-export default Home;
+export default withAuthUser({
+  whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
+  whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+  authPageURL: "/auth/signin",
+})(Home);
